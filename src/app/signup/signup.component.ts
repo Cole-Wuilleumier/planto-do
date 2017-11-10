@@ -1,20 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject} from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User } from '../classes/user';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
+  providers:[FormBuilder]
 })
 export class SignupComponent {
-
-  model = new User(null, 'Cole');
-  submitted = false;
-
-  onSubmit(){ this.submitted = true; }
+  signup_form: FormGroup;
+  user: User;
   
-  //TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.model); }
+  constructor(
+    fb:FormBuilder
+  ){
+    this.signup_form = fb.group({
+      name:'',
+      email:''
+    });
+
+  }
 
 }
