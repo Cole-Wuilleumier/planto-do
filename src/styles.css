@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: 'Gruppo', cursive; /* See index.html for font import*/
+    font-size: 1.1em;
+}
