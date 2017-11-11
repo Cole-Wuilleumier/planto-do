@@ -1,5 +1,42 @@
- <form [formGroup]="signup_form">
-      <input formControlName="name">
-      <input formControlName="email" placeholder="Email">
-      <button>Submit</button>
-</form>
+<app-dashboard></app-dashboard>
+<table>
+  <form [formGroup]="signup_form" (ngSubmit)="onSubmit()">
+        <tr>
+          <td>Name: </td>
+          <td>
+              <input formControlName="name">
+              <div *ngIf="signup_form.controls['name'].hasError('required') && signup_form.controls['name'].touched">Name is required.</div>
+              <div *ngIf="signup_form.controls['name'].hasError('pattern') && signup_form.controls['name'].touched">Name must contain letters only.</div>
+              <div *ngIf="signup_form.controls['name'].hasError('minlength') && signup_form.controls['name'].touched">Name must be 4 or more characters.</div>
+              <div *ngIf="signup_form.controls['name'].hasError('maxlength') && signup_form.controls['name'].touched">Name must be less than 25 characters.</div>
+                      
+          </td>
+        </tr>
+        <tr>
+          <td>Email: </td>
+          <td>
+            <input formControlName="email" placeholder="Email">
+            <div *ngIf="signup_form.controls['email'].hasError('required') && signup_form.controls['email'].touched">Email is required.</div>
+            <div *ngIf="signup_form.controls['email'].hasError('pattern') && signup_form.controls['email'].touched">Must be valid email.</div>
+          </td>
+        </tr>
+          <tr>
+            <td>Password:</td>
+            <td>
+              <input formControlName="password" type="password" >
+              <div *ngIf="signup_form.controls['password'].hasError('minLength') && signup_form.controls['password'].touched">Password must be at least 6 characters long.</div>
+              <div *ngIf="signup_form.controls['password'].hasError('pattern') && signup_form.controls['password'].touched">Password must contain letters, numbers and at least 1 symbol.</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Confirm password:</td>
+            <td>
+              <input formControlName="confirmPassword" type="password" ><br>
+              <div style='color:red;' *ngIf="signup_form.controls.confirmPassword.errors?.MatchPassword">Password not match</div>
+            </td>
+          </tr>
+        <tr>
+          <button>Submit</button>
+        </tr>
+  </form>
+</table>

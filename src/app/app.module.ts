@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 
 import { PostsService } from './posts.service';
+import { UserService } from './user.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -50,7 +51,7 @@ const ROUTES = [
     HttpModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [PostsService], // Add the posts service
+  providers: [PostsService, UserService], // Add the posts service
   bootstrap: [AppComponent]
 })
 export class AppModule { }
