@@ -1,11 +1,12 @@
 // Get dependencies
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const promise = require('bluebird');
 const config = require('./config');
+const morgan = require('morgan');
 
 // Get our API routes
 const api = require('./server/routes/api');
@@ -19,11 +20,16 @@ mongoose.connect(config.DB_CONNECT, {
 });
 
 // Parsers for POST data
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+//view requests
+app.use(morgan('dev'));
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
+ 
+
 
 // Set our api routes
 app.use('/api', api);

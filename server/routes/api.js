@@ -13,7 +13,7 @@ router.delete('/post/:id', post.deletePost);
 
 var user = require('../controllers/user.server.controller');
 //router.get('/user/:id', user.getUser);
-router.get('/addUser', user.addUser);
+router.post('/addUser', user.addUser);
 //router.put('/user/:id', user.updateUser);
 //router.delete('/user/:id', user.deleteUser);
 
